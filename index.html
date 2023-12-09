@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MD5 en Frontend</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Incluye la biblioteca CryptoJS desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+</head>
+<body>
+  <div class="container" >
+    <h2 class="alert alert-success"> Probando encriptación</h2>
+    <div class="form-group mt-5" >
+  <!-- Tu contenido HTML aquí -->
+  <label for="textoNormal" class="form-control">
+  <input type="text" class="form-control" name="textoNormal" id="textoNormal"></label><br>
+  <button class ="btn btn-primary" id="encriptar" onclick="encriptar();">Encriptar</button><br>
+  <label for="resultado" class="form-control">
+  <input type="text" class="form-control" name="resultado" id="resultado"></label>
+  </div>
+</div>
+  <script>
+
+    // Función para calcular el hash MD5
+    function calcularHashMD5(texto) {
+      // El método md5 toma una cadena y devuelve un objeto WordArray
+      const hash = CryptoJS.MD5(texto);
+
+      // Convertir el objeto WordArray a una cadena hexadecimal
+      const hashHex = hash.toString(CryptoJS.enc.Hex);
+
+      return hashHex;
+    }
+   function encriptar(){
+      let texto = document.getElementById('textoNormal').value;
+      document.getElementById('resultado').value= calcularHashMD5(texto);
+   }
+    // Ejemplo de uso
+    const textoParaHash = "Hola, este es un ejemplo de texto para hash.";
+    const hashMD5 = calcularHashMD5(textoParaHash);
+
+    console.log("Texto original:", textoParaHash);
+    console.log("Hash MD5:", hashMD5);
+  </script>
+</body>
+</html>
